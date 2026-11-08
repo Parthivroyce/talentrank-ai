@@ -1,0 +1,990 @@
+# MASTER BUILD PROMPT — TALENTRANK AI
+## Production-Quality AI Resume Screening & Recruitment Management Platform
+
+Act as a principal software architect, senior full-stack engineer, AI/ML engineer, product designer, security engineer and QA lead.
+
+Your task is to BUILD a complete, working, production-quality recruitment SaaS application based on the client brief below.
+
+This is a real Software Engineering Intern hiring assignment. The application will be evaluated for engineering quality (50%), problem solving (30%) and communication (20%).
+
+**PROJECT NAME: TalentRank AI**
+
+**Tagline:** Intelligent Hiring. Explainable Decisions.
+
+IMPORTANT: Do not just describe the architecture, generate a proposal, or show me example code. Actually implement the entire application in the Google AI Studio workspace. Create all necessary frontend, backend, database integration, authentication, AI functionality, tests and documentation files.
+
+Do not stop after generating the initial UI. Implement the complete end-to-end workflows.
+
+---
+
+# 1. CLIENT REQUIREMENTS
+
+Build an AI-powered recruitment platform for a staffing company in Noida with:
+
+- 70 recruiters.
+- 120 total employees.
+- Contract and permanent IT, banking back-office and retail recruitment.
+- Approximately 300 open requisitions per month.
+- Approximately 120 CVs per requisition.
+
+The platform must reduce manual resume screening, provide explainable AI-based candidate rankings, and allow clients to review shortlisted candidates through a secure portal.
+
+The application must have two primary roles:
+
+1. Recruiter
+2. Client Hiring Manager
+
+---
+
+# 2. TECHNOLOGY STACK
+
+Use the following architecture:
+
+Frontend:
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Lucide icons
+- Reusable, responsive components
+
+Backend:
+- Node.js
+- TypeScript
+- Express or an integrated secure server-side API architecture
+
+Database:
+- Firebase Firestore
+
+Authentication:
+- Firebase Authentication
+- Role-based access control
+- Protected frontend routes and backend endpoints
+
+File storage:
+- Firebase Storage or an appropriate secure Google Cloud storage integration.
+
+AI:
+- Google Gemini API using the available Google AI Studio model.
+- Structured JSON responses.
+- Server-side API calls only.
+- Zod or equivalent schema validation.
+
+Document processing:
+- PDF text extraction using an appropriate maintained PDF library.
+- DOCX extraction using Mammoth or an equivalent library.
+- Scanned PDF fallback using Gemini multimodal document processing or OCR.
+
+Deployment:
+- Google Cloud Run or another compatible production deployment.
+- GitHub-ready project structure.
+
+Use compatible, maintained package versions. Do not invent package APIs.
+
+Never expose API keys, Firebase service credentials, or other secrets in frontend code or GitHub.
+
+If Firebase or another external integration requires my authorization, configure the integration points and clearly explain the exact remaining setup. Do not pretend that an integration has succeeded when it has not.
+
+---
+
+# 3. DESIGN SYSTEM — EXTREMELY IMPORTANT
+
+The application must look like an actual premium B2B SaaS product.
+
+Do NOT make it look like a generic AI-generated dashboard.
+
+Design inspiration:
+- Linear
+- Stripe
+- Ashby
+- Greenhouse
+- Modern enterprise SaaS applications
+
+Visual direction:
+
+- Clean white and very light grey backgrounds.
+- Deep navy primary text.
+- Restrained indigo/blue accent colour.
+- Subtle borders.
+- Soft shadows only when useful.
+- Generous whitespace.
+- Excellent typography.
+- Consistent spacing.
+- Professional data tables.
+- Small, tasteful status indicators.
+- Lucide icons.
+- No unnecessary gradients.
+- No excessive glassmorphism.
+- No random colourful cards.
+- No oversized decorative graphics.
+
+Create a consistent design system with reusable buttons, inputs, cards, tables, modals, badges, dropdowns, navigation and toast notifications.
+
+Desktop layout:
+- Fixed or collapsible sidebar.
+- Clean top navigation.
+- Main content with a sensible maximum width.
+- Clear page hierarchy.
+
+Mobile layout:
+- Fully responsive.
+- Functional mobile navigation.
+- Candidate cards instead of oversized tables where appropriate.
+- Client portal optimized for phone usage.
+
+Every screen must have:
+- Loading state.
+- Empty state.
+- Error state.
+- Success feedback.
+- Functional interactions.
+
+Use realistic sample data rather than lorem ipsum.
+
+---
+
+# 4. APPLICATION SCREENS
+
+Implement the following seven screens with real navigation and connected functionality.
+
+## SCREEN 1 — LOGIN AND AUTHENTICATION
+
+Build a premium login screen.
+
+Features:
+- Email and password authentication.
+- Firebase Authentication.
+- Role-based dashboard redirection.
+- Recruiter and client demo accounts.
+- Password visibility toggle.
+- Validation.
+- Loading and error states.
+- Logout.
+
+Never trust a role supplied by the frontend. Validate roles through trusted backend authorization and secure user records.
+
+Public registration must not allow users to assign themselves the client role.
+
+Provide a secure demo-account provisioning script.
+
+## SCREEN 2 — RECRUITER DASHBOARD
+
+Create a professional recruitment dashboard.
+
+Display:
+
+- Total active requisitions.
+- Total candidates processed.
+- Candidates awaiting review.
+- Candidates shortlisted.
+- Interviews scheduled.
+- Candidates joined.
+- Average AI match score.
+- Screening progress.
+
+Include:
+
+- Recent requisitions.
+- Recent candidate activity.
+- Recruitment pipeline summary.
+- Quick actions.
+- Search and filtering.
+
+All metrics must be derived from actual database records or clearly identified demo seed data.
+
+Add a prominent button: "Create New Requisition".
+
+## SCREEN 3 — AI JOB DESCRIPTION SCORECARD
+
+Build an interactive JD intake system.
+
+The recruiter can:
+
+- Paste a job description.
+- Upload a JD document if practical.
+- Click "Generate AI Scorecard".
+
+Gemini must extract:
+
+1. Job title.
+2. Location.
+3. Required skills.
+4. Must-have skills.
+5. Nice-to-have skills.
+6. Minimum experience.
+7. Maximum experience.
+8. Minimum CTC, if specified.
+9. Maximum CTC, if specified.
+10. Notice-period requirement.
+11. Employment type.
+12. Educational requirements, if specified.
+
+Display the extracted information in editable fields.
+
+Allow the recruiter to:
+- Modify requirements.
+- Mark skills as mandatory or preferred.
+- Adjust importance and scoring weights.
+- Save the scorecard.
+- Reopen and edit it.
+
+Use structured JSON with schema validation.
+
+Never silently invent missing JD requirements. Mark missing information as unspecified.
+
+Include the example job:
+
+Senior Java Developer
+Location: Noida
+Experience: 5–8 years
+Must-have skills: Java, Spring Boot
+Notice period: Up to 60 days
+
+This example must be preloaded as demo data.
+
+## SCREEN 4 — BULK CV UPLOAD AND PARSING
+
+This is one of the most important engineering requirements.
+
+Create a professional bulk upload interface.
+
+Support:
+- PDF.
+- DOCX.
+- Multiple file selection.
+- Drag and drop.
+- Upload progress.
+- File validation.
+- Processing status.
+- Duplicate detection.
+- Retry for failed files.
+
+Design for batches of up to 500 files, using asynchronous processing, bounded concurrency and pagination rather than trying to process all files simultaneously.
+
+Each CV must be processed independently.
+
+Extract:
+
+- Candidate name.
+- Email.
+- Phone.
+- Current role.
+- Total professional experience.
+- Technical skills.
+- Employment history.
+- Education.
+- Certifications.
+- Current CTC, if present.
+- Expected CTC, if present.
+- Notice period.
+- Location.
+- Resume text.
+- Source filename.
+
+For scanned PDFs, implement a genuine OCR/multimodal fallback.
+
+Do not silently classify an unreadable CV as an unqualified candidate. Show a clear processing error and allow retry or manual review.
+
+Duplicate detection should use normalized identifiers such as email and phone, with additional document fingerprints where appropriate.
+
+Do not accidentally merge different candidates because their names are similar.
+
+Create a processing queue and display:
+- Total uploaded.
+- Processed successfully.
+- Currently processing.
+- Failed.
+- Duplicate records.
+
+Persist processing results so refreshing the page does not lose progress.
+
+Provide sample candidates even before the recruiter uploads anything.
+
+## SCREEN 5 — AI CANDIDATE RANKING AND EVIDENCE
+
+This is the central feature of TalentRank AI.
+
+Gemini must evaluate candidates against the saved JD scorecard.
+
+Implement a transparent scoring system.
+
+Suggested weighting:
+
+- Must-have technical skills: 35%.
+- Experience relevance: 25%.
+- Nice-to-have skills: 15%.
+- Notice period: 15%.
+- Location and other explicitly job-relevant requirements: 10%.
+
+Make weights configurable and normalize them appropriately.
+
+CTC can be shown as a separate comparison when specified, without silently excluding candidates for missing information.
+
+For each candidate, generate:
+
+1. Overall match score out of 100.
+2. Skill match.
+3. Experience match.
+4. Notice-period match.
+5. Other criterion scores.
+6. Matching evidence.
+7. Missing or uncertain information.
+8. Strengths.
+9. Potential gaps.
+10. Recommendation for recruiter review.
+
+CRITICAL EVIDENCE RULE:
+
+Every scored criterion must include an actual supporting quotation from the candidate's extracted CV text.
+
+Store:
+- Evidence quotation.
+- Criterion.
+- Source filename.
+- Page number when available.
+- Evidence confidence.
+
+Never invent a quotation, employer, skill, qualification, or experience.
+
+If evidence is missing, return "Not found in CV" rather than guessing.
+
+Validate quotations against the extracted CV text. If a quotation cannot be verified, mark the criterion as unverified and do not present it as factual evidence.
+
+Use a structured response similar to:
+
+{
+  "overallScore": 88,
+  "criteria": [
+    {
+      "name": "Spring Boot",
+      "score": 95,
+      "status": "strong_match",
+      "evidence": "Exact quotation from extracted CV text",
+      "source": "resume.pdf"
+    }
+  ],
+  "strengths": [],
+  "gaps": [],
+  "uncertainties": [],
+  "recommendation": "Recruiter review recommended"
+}
+
+The JSON above is illustrative. Implement a proper validated schema and handle invalid AI responses.
+
+IMPORTANT FAIRNESS REQUIREMENTS:
+
+Never use these attributes in scoring:
+- Name.
+- Gender.
+- Age.
+- Photograph.
+- Marital status.
+
+Do not infer protected characteristics from other information.
+
+Hide personal identifiers from the scoring model wherever technically practical.
+
+AI must never automatically reject candidates.
+
+Low-scoring candidates must remain searchable.
+
+Every candidate must be opened and reviewed by a recruiter before submission to a client.
+
+Add a clear notice that AI recommendations are decision-support tools, not hiring decisions.
+
+Build:
+- Ranked candidate table.
+- Search.
+- Filters.
+- Sorting.
+- Score breakdown.
+- Evidence expansion.
+- Resume preview.
+- Candidate profile.
+- Recruiter review action.
+- Submit-to-client action.
+
+Use sensible pagination.
+
+## SCREEN 6 — CLIENT HIRING MANAGER PORTAL
+
+Build a separate client experience.
+
+Clients must only see candidates explicitly submitted to their organization.
+
+Enforce this restriction on the backend, not merely through frontend filtering.
+
+The client can:
+
+- Log in.
+- View assigned requisitions.
+- Review submitted candidates.
+- View AI match scores and evidence.
+- View masked candidate contact information.
+- Open permitted resume information.
+- Shortlist a candidate.
+- Reject with a mandatory reason.
+- Request an interview.
+- Propose interview date and time.
+- Add feedback.
+
+Never expose a candidate's private email or phone to a client.
+
+Create an elegant candidate review card with:
+- Candidate ID.
+- Current role.
+- Experience.
+- Skills.
+- AI score.
+- Evidence.
+- Resume preview.
+- Shortlist and reject actions.
+
+The mobile client experience must be particularly polished.
+
+Mock external messages and interview notifications within the application. Do not claim to send real emails or calendar invitations unless an integration is actually configured.
+
+## SCREEN 7 — RECRUITMENT PIPELINE
+
+Create a requisition-level recruitment pipeline.
+
+Stages:
+
+1. Sourced.
+2. Parsed.
+3. AI Evaluated.
+4. Recruiter Reviewed.
+5. Submitted to Client.
+6. Shortlisted.
+7. Interview Scheduled.
+8. Selected.
+9. Joined.
+
+Also support rejected and withdrawn states where appropriate.
+
+Implement:
+- Candidate status changes.
+- Timeline/history.
+- Status timestamps.
+- Client feedback.
+- Recruiter notes.
+- Interview proposals.
+- Search and filtering.
+
+Every status change must be saved in Firestore.
+
+Add an audit log showing:
+- User.
+- Action.
+- Candidate or requisition.
+- Timestamp.
+
+Track candidate profile views and client access.
+
+---
+
+# 5. SAMPLE DATA AND DEMO EXPERIENCE
+
+The application must never open to an empty dashboard.
+
+Seed a realistic demo environment.
+
+Create at least 15 sample candidate profiles across:
+- Java developers.
+- Python developers.
+- Full-stack developers.
+- KYC analysts.
+- Banking operations.
+- QA engineers.
+
+Include these exact supplied candidates:
+
+CND-91022
+Name: Ritika Bansal
+Current role: Senior Java Developer
+Experience: 6.5 years
+Skills: Java, Spring Boot, microservices
+Notice: 60 days
+
+CND-91047
+Name: Arjun Rawat
+Current role: KYC Analyst
+Experience: 3 years
+Skills: KYC, AML checks, Excel
+Notice: 30 days
+
+CND-91088
+Name: Pooja Nair
+Current role: Java Developer
+Experience: 4 years
+Skills: Java, Hibernate, REST APIs
+Notice: 90 days
+
+Use the example Senior Java Developer JD.
+
+Expected qualitative behavior:
+- Ritika should be a strong potential match.
+- Pooja should show relevant Java skills but a notice-period mismatch and insufficient experience.
+- Arjun should show low relevance for this particular Java role.
+
+These are expected test scenarios, NOT hardcoded AI scores.
+
+The ranking must come from the actual scoring process.
+
+Create realistic additional sample candidates and requisitions.
+
+Provide sample CV documents where feasible, with clearly fictional candidate information and no real personal data.
+
+Seed:
+- A recruiter account.
+- A client hiring manager account.
+- At least one client organization.
+- A requisition.
+- Candidate submissions.
+- Pipeline activity.
+
+Document how demo accounts are provisioned.
+
+---
+
+# 6. PRIVACY, SECURITY AND DPDP COMPLIANCE
+
+Treat candidate CVs as personal data.
+
+Implement practical privacy safeguards aligned with the requirements of the Digital Personal Data Protection Act, 2023.
+
+Features:
+
+1. Candidate consent record.
+2. Hiring-purpose limitation.
+3. Consent timestamp.
+4. Consent status.
+5. Deletion request workflow.
+6. Restricted access.
+7. Client-specific data isolation.
+8. Audit logging.
+9. Secure file access.
+10. Server-side validation.
+
+Implement deletion as an actual workflow:
+- Record the deletion request.
+- Restrict further use.
+- Delete or appropriately anonymize candidate information and associated files according to the configured retention process.
+- Retain only legally permissible minimal audit information.
+
+Never expose CV storage through public URLs.
+
+Use secure access checks before serving documents.
+
+Validate uploaded MIME types, file extensions and size limits.
+
+Do not put secrets or personal candidate information in logs.
+
+Implement Firebase security rules and backend authorization.
+
+Do not treat hiding a frontend button as access control.
+
+---
+
+# 7. AI RELIABILITY AND FAILURE HANDLING
+
+The AI must genuinely work using Gemini.
+
+Implement:
+- Structured outputs.
+- Schema validation.
+- Safe parsing.
+- Retry for transient failures.
+- API rate-limit handling.
+- Processing timeouts.
+- Clear failure messages.
+- Manual correction.
+- Confidence/uncertainty indicators.
+
+Never silently fall back to fake AI-generated results.
+
+If Gemini is unavailable:
+- Preserve the uploaded CV.
+- Mark AI processing as failed or pending.
+- Allow retry.
+- Allow manual profile correction.
+- Do not fabricate scores.
+
+Separate document extraction from candidate scoring.
+
+Cache successfully parsed documents and scoring results against the relevant document and scorecard versions.
+
+If the scorecard changes, mark old scores as stale and provide a way to recalculate.
+
+Add a simple delivery-head fairness review feature showing a weekly sample of AI rankings compared with recruiter decisions. It must not be presented as proof of fairness; show sample size, differences and limitations.
+
+---
+
+# 8. DATABASE ARCHITECTURE
+
+Design a clear Firestore data model.
+
+Include collections for:
+
+- users
+- organizations
+- requisitions
+- scorecards
+- candidates
+- resumeFiles
+- parsingJobs
+- candidateScores
+- clientSubmissions
+- pipelineEvents
+- consentRecords
+- deletionRequests
+- auditLogs
+- interviewProposals
+- fairnessReviews
+
+Use stable IDs and timestamps.
+
+Avoid unbounded nested arrays.
+
+Use pagination and appropriate query indexes.
+
+Implement a clean service layer so frontend components do not directly contain complex database logic.
+
+---
+
+# 9. BACKEND API DESIGN
+
+Create secure endpoints or equivalent server actions for:
+
+- Authentication and role validation.
+- Requisition CRUD.
+- JD extraction.
+- Scorecard saving.
+- CV upload.
+- CV parsing.
+- Duplicate detection.
+- AI candidate scoring.
+- Candidate searching.
+- Candidate review.
+- Client submission.
+- Client shortlist/rejection.
+- Interview proposals.
+- Pipeline updates.
+- Consent management.
+- Deletion requests.
+- Audit logs.
+- Dashboard analytics.
+
+Validate all incoming data.
+
+Return consistent error responses.
+
+Never allow a client user to retrieve candidates belonging to another client.
+
+---
+
+# 10. TESTING
+
+Write real tests, not placeholder test files.
+
+At minimum test:
+
+1. JD scorecard extraction schema.
+2. PDF parsing.
+3. DOCX parsing.
+4. Duplicate detection.
+5. Scoring calculation.
+6. Evidence validation.
+7. Missing evidence handling.
+8. Protected attribute exclusion.
+9. Recruiter-only operations.
+10. Client data isolation.
+11. Candidate submission workflow.
+12. Client rejection reason validation.
+13. Pipeline transitions.
+14. Consent and deletion workflow.
+
+Add integration tests for the most important workflows.
+
+Use mocked Gemini responses in automated tests, while retaining genuine Gemini API integration in the application.
+
+Run the available build, lint and test commands.
+
+Fix actual errors instead of ignoring them.
+
+---
+
+# 11. QUALITY AND PERFORMANCE
+
+Build this as a coherent product, not seven disconnected screens.
+
+Requirements:
+- Reusable components.
+- Clean TypeScript types.
+- No unnecessary `any`.
+- Consistent API responses.
+- No dead buttons.
+- No nonfunctional navigation.
+- No fake charts.
+- No fake authentication.
+- No hardcoded candidate rankings.
+- No frontend-exposed API secrets.
+- No placeholder pages.
+- No broken image assets.
+- No console errors.
+- Responsive layouts.
+- Proper loading states.
+
+Optimize bulk uploads using:
+- Per-file processing.
+- Concurrency limits.
+- Progress tracking.
+- Retry handling.
+- Persistent job state.
+- Pagination.
+
+Do not attempt to load 500 full CVs into one browser request.
+
+---
+
+# 12. DOCUMENTATION AND SUBMISSION PACKAGE
+
+This is a mandatory part of the assignment.
+
+Create:
+
+A. README.md
+- Project overview.
+- Features.
+- Technology stack.
+- Architecture.
+- Local setup.
+- Screenshots section.
+- Demo instructions.
+
+B. TECHNICAL DESIGN DOCUMENT
+
+Generate a professional, polished PDF called:
+
+TalentRank_AI_Technical_Design_Document.pdf
+
+Include:
+
+1. Project overview.
+2. Client problem.
+3. Proposed solution.
+4. Architecture diagram.
+5. Technology choices and reasoning.
+6. Database schema.
+7. Main user flows.
+8. AI extraction architecture.
+9. AI scoring methodology.
+10. Evidence validation.
+11. Fairness safeguards.
+12. Privacy and security.
+13. UI/UX decisions.
+14. API architecture.
+15. Testing strategy.
+16. Performance considerations.
+17. Assumptions.
+18. Scope limitations.
+19. What was intentionally excluded.
+20. Future improvements.
+
+Include the actual GitHub URL at the top when available.
+
+If the repository has not yet been created, clearly mark the GitHub URL as pending rather than inventing one.
+
+Include the actual deployed URL only after deployment succeeds.
+
+C. deployment.md
+
+Include:
+- Prerequisites.
+- Step-by-step local installation.
+- Environment variable NAMES only, never values.
+- Firebase configuration steps.
+- Gemini API configuration.
+- Database setup.
+- Seed instructions.
+- Demo account provisioning.
+- Production deployment.
+- How to run tests.
+
+D. SUBMISSION ZIP
+
+Create a script that generates:
+
+TalentRank_AI_Submission.zip
+
+The ZIP must contain exactly these two submission files:
+
+1. TalentRank_AI_Technical_Design_Document.pdf
+2. deployment.md
+
+Keep the complete source code in the GitHub repository, not inside this two-file submission ZIP.
+
+Make the GitHub URL and deployed URL accurate.
+
+---
+
+# 13. GITHUB AND DEPLOYMENT
+
+Prepare the entire repository for public GitHub submission.
+
+Include:
+- .gitignore
+- README.md
+- package.json
+- Lockfile
+- Source code.
+- Tests.
+- Firebase rules.
+- Firestore indexes.
+- Seed scripts.
+- Environment example file without actual secrets.
+- Documentation.
+
+If GitHub integration is available and authorized:
+- Create or connect the repository.
+- Preserve a meaningful commit history.
+- Use a professional repository name: talentrank-ai.
+- Push the complete source code.
+
+Otherwise provide exact Git commands to initialize, commit and push.
+
+For deployment:
+- Prepare a production build.
+- Configure server-side environment variables.
+- Deploy to a compatible hosting platform.
+- Verify the deployed application.
+- Verify authentication and core workflows.
+
+Never expose secrets.
+
+Never claim a deployment or GitHub push succeeded unless it actually did.
+
+If an external action requires authorization, stop at that precise action and tell me what I need to approve.
+
+---
+
+# 14. IMPLEMENTATION ORDER
+
+Work in this order, but do not stop after each stage to ask me whether to continue:
+
+1. Inspect the available Google AI Studio environment and existing project.
+2. Establish the complete application architecture.
+3. Implement the design system and application layout.
+4. Implement Firebase authentication and roles.
+5. Implement database collections and security rules.
+6. Implement the recruiter dashboard.
+7. Implement JD extraction and editable scorecards.
+8. Implement PDF/DOCX upload and parsing.
+9. Implement genuine Gemini scoring with verified evidence.
+10. Implement candidate ranking and review.
+11. Implement the client portal.
+12. Implement the recruitment pipeline.
+13. Implement consent, deletion and audit logging.
+14. Seed realistic demo data.
+15. Write and run tests.
+16. Fix build and runtime errors.
+17. Generate the technical design PDF.
+18. Generate deployment.md.
+19. Generate the two-file submission ZIP.
+20. Prepare GitHub and deployment.
+
+Prioritize a complete, functional core over optional extras.
+
+If time or environment limitations prevent optional features, finish the mandatory core first.
+
+---
+
+# 15. FINAL ACCEPTANCE CHECKLIST
+
+Before declaring the application complete, verify the following:
+
+[ ] Recruiter can log in.
+
+[ ] Client can log in.
+
+[ ] Roles are enforced on the backend.
+
+[ ] Recruiter can create a requisition.
+
+[ ] Gemini extracts a JD into an editable scorecard.
+
+[ ] Recruiter can upload multiple PDFs.
+
+[ ] Recruiter can upload multiple DOCX files.
+
+[ ] CVs are parsed into candidate profiles.
+
+[ ] Duplicate candidates are detected.
+
+[ ] Gemini genuinely scores candidates against a saved scorecard.
+
+[ ] Scores include verifiable CV evidence.
+
+[ ] Protected attributes are excluded from scoring.
+
+[ ] Missing evidence is explicitly identified.
+
+[ ] Low-scoring candidates remain searchable.
+
+[ ] Recruiter must review a CV before client submission.
+
+[ ] Client sees only assigned candidates.
+
+[ ] Client contact information is masked.
+
+[ ] Client can shortlist candidates.
+
+[ ] Client can reject with a mandatory reason.
+
+[ ] Client can propose an interview.
+
+[ ] Pipeline changes persist.
+
+[ ] Consent records exist.
+
+[ ] Deletion requests work.
+
+[ ] Audit logs work.
+
+[ ] Sample data is present.
+
+[ ] Mobile layouts work.
+
+[ ] Important tests pass.
+
+[ ] Build succeeds.
+
+[ ] Technical Design PDF exists.
+
+[ ] deployment.md exists.
+
+[ ] Submission ZIP contains exactly two files.
+
+[ ] GitHub URL is correct if pushed.
+
+[ ] Deployment URL is correct if deployed.
+
+---
+
+# FINAL INSTRUCTION
+
+I have limited time because I have upcoming technical interviews.
+
+Do not waste time asking me unnecessary questions or presenting multiple architectural alternatives.
+
+Make sensible engineering decisions independently, document assumptions, and implement the strongest practical solution.
+
+Do not sacrifice correctness for visual appearance. Do not sacrifice the working backend for a beautiful frontend.
+
+If an external credential, account connection or authorization is essential, explain only that specific blocker and continue implementing everything else.
+
+I want a complete, polished, genuinely functional TalentRank AI application that a recruiter and client can both log into and test.
+
+Start building the actual application NOW.
+
+Do not respond with just a plan. Write the code, create the files, connect the services, run the tests, fix the errors and prepare the submission deliverables.

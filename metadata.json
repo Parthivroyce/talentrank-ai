@@ -1,0 +1,6 @@
+{
+  "name": "TalentRank AI",
+  "description": "Intelligent Hiring. Explainable Decisions. Production-Quality AI Resume Screening & Recruitment Management Platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
